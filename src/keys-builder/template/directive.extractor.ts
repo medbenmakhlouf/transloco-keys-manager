@@ -32,8 +32,8 @@ export function directiveExtractor(config: TemplateExtractorConfig) {
   traverse(ast.nodes, config);
 }
 
-function traverse(nodes: TmplAstNode[], config: ExtractorConfig) {
-  for (const node of nodes) {
+function traverse(nodes: TmplAstNode[] | undefined, config: ExtractorConfig) {
+  for (const node of nodes || []) {
     if (isBlockNode(node)) {
       traverse(resolveBlockChildNodes(node), config);
       continue;

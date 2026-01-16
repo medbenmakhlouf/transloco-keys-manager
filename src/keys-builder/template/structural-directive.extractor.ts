@@ -51,11 +51,11 @@ export function structuralDirectiveExtractor(config: TemplateExtractorConfig) {
 }
 
 export function traverse(
-  nodes: TmplAstNode[],
+  nodes: TmplAstNode[] | undefined,
   containers: ContainerMetaData[],
   config: TemplateExtractorConfig,
 ) {
-  for (const node of nodes) {
+  for (const node of nodes || []) {
     if (isBlockNode(node)) {
       traverse(resolveBlockChildNodes(node), containers, config);
       continue;
