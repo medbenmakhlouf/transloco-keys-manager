@@ -173,8 +173,8 @@ function resolveMetadata(node: TmplAstTemplate): ContainerMetaData[] {
     let read = node.attributes.find(isPrefixAttr)?.value;
     if (!read) {
       const ast = (node.inputs.find(isPrefixAttr)?.value as ASTWithSource)?.ast;
-      if (isLiteralExpression(ast)) {
-        read = ast.value as string;
+      if (isLiteralExpression(ast) && typeof ast.value === 'string') {
+        read = ast.value;
       }
     }
 
@@ -184,8 +184,8 @@ function resolveMetadata(node: TmplAstTemplate): ContainerMetaData[] {
       (variable) => variable.value === '$implicit',
     )!;
     const read = node.templateAttrs.find(isPrefixAttr)?.value as ASTWithSource;
-    metadata = isLiteralExpression(read?.ast)
-      ? [{ name, read: read.ast.value as string }]
+    metadata = isLiteralExpression(read?.ast) && typeof read?.ast.value === 'string'
+      ? [{ name, read: read.ast.value }]
       : [{ name }];
   }
 
