@@ -1,7 +1,9 @@
-import { Scopes, ASTValue } from '../../types';
+import { LiteralPrimitive } from '@angular/compiler';
+
+import { Scopes } from '../../types';
 
 export function resolveAliasAndKey(
-  key: ASTValue,
+  key: LiteralPrimitive['value'],
   scopes: Scopes,
 ): [string, string | null] {
   /**

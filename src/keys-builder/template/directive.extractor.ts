@@ -7,7 +7,7 @@ import {
   TmplAstTextAttribute,
 } from '@angular/compiler';
 
-import { ExtractorConfig, OrArray, ASTValue } from '../../types';
+import { ExtractorConfig, OrArray } from '../../types';
 import { addKey } from '../add-key';
 import { resolveAliasAndKey } from '../utils/resolvers.utils';
 
@@ -84,7 +84,7 @@ function isTranslocoParams(ast: unknown): ast is TmplAstBoundAttribute {
   return isBoundAttribute(ast) && ast.name === 'translocoParams';
 }
 
-function resolveKey(ast: OrArray<AST | string>): ASTValue[] {
+function resolveKey(ast: OrArray<AST | string>): string[] {
   return coerceArray(ast)
     .map((expression) => {
       if (typeof expression === 'string') {
@@ -97,12 +97,12 @@ function resolveKey(ast: OrArray<AST | string>): ASTValue[] {
         return resolveKey(expression.expression);
       }
     })
-    .filter(Boolean)
+    .filter((key) => key !== undefined && key !== null && (typeof key === 'string' || Array.isArray(key)))
     .flat();
 }
 
 function addKeys(
-  keys: ASTValue[],
+  keys: string[],
   params: string[],
   config: ExtractorConfig,
 ): void {
