@@ -174,7 +174,7 @@ function resolveMetadata(node: TmplAstTemplate): ContainerMetaData[] {
     if (!read) {
       const ast = (node.inputs.find(isPrefixAttr)?.value as ASTWithSource)?.ast;
       if (isLiteralExpression(ast)) {
-        read = ast.value;
+        read = ast.value as string;
       }
     }
 
@@ -185,7 +185,7 @@ function resolveMetadata(node: TmplAstTemplate): ContainerMetaData[] {
     )!;
     const read = node.templateAttrs.find(isPrefixAttr)?.value as ASTWithSource;
     metadata = isLiteralExpression(read?.ast)
-      ? [{ name, read: read.ast.value }]
+      ? [{ name, read: read.ast.value as string }]
       : [{ name }];
   }
 

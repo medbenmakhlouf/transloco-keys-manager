@@ -1,7 +1,7 @@
-import { Scopes } from '../../types';
+import { Scopes, ASTValue } from '../../types';
 
 export function resolveAliasAndKey(
-  key: string,
+  key: ASTValue,
   scopes: Scopes,
 ): [string, string | null] {
   /**
@@ -13,6 +13,7 @@ export function resolveAliasAndKey(
    * {{ 'scopeAlias.title' | transloco }}
    *
    */
+  if (typeof key !== 'string') return ['', null];
   const [scopeAliasOrKey, ...actualKey] = key.split('.');
   const scopeAliasExists = scopes.aliasToScope.hasOwnProperty(scopeAliasOrKey);
   const translationKey = scopeAliasExists ? actualKey.join('.') : key;
