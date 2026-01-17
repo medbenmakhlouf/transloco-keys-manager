@@ -78,3 +78,26 @@
   }
 }
 </ng-container>
+
+
+@switch (condition) {
+  @case (caseA)
+  @case (caseB) {
+    <span>{{ '27' | transloco }}</span>
+  }
+  @default {
+    <span>{{ '28' | transloco }}</span>
+  }
+}
+
+<ng-container *transloco="let t">
+  @switch (condition) {
+    @case (caseA)
+    @case (caseB) {
+      <span>{{ t('29') }}</span>
+    }
+    @default {
+      <span>{{ t('30') }}</span>
+    }
+  }
+</ng-container>
