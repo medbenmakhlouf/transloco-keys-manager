@@ -26,7 +26,7 @@ export function testControlFlowExtraction(fileFormat: Config['fileFormat']) {
     beforeEach(() => removeI18nFolder(type));
 
     it('should work with control flow', () => {
-      let expected = generateKeys({ end: 27 });
+      let expected = generateKeys({ end: 30 });
       buildTranslationFiles(config);
       assertTranslation({ type, expected, fileFormat });
     });
