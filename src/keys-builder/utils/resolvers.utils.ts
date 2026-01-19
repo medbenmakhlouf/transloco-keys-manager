@@ -1,6 +1,7 @@
 import { LiteralPrimitive } from '@angular/compiler';
 
 import { Scopes } from '../../types';
+import { isString } from '../../utils/validators.utils';
 
 export function resolveAliasAndKey(
   key: LiteralPrimitive['value'],
@@ -15,7 +16,7 @@ export function resolveAliasAndKey(
    * {{ 'scopeAlias.title' | transloco }}
    *
    */
-  if (typeof key !== 'string') return ['', null];
+  if (!isString(key)) return ['', null];
   const [scopeAliasOrKey, ...actualKey] = key.split('.');
   const scopeAliasExists = scopes.aliasToScope.hasOwnProperty(scopeAliasOrKey);
   const translationKey = scopeAliasExists ? actualKey.join('.') : key;

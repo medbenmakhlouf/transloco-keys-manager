@@ -100,5 +100,7 @@ export function buildScopeFilePaths({
 }
 
 function interpolatePathFactory(sourceRoot?: string) {
-  return sourceRoot ? (pathStr: string) => pathStr.replace(/\$\{sourceRoot}/g, sourceRoot) : (v: string) => v;
+  return sourceRoot
+    ? (pathStr: string) => pathStr.replace(/\$\{sourceRoot}/g, sourceRoot)
+    : (v: string) => v;
 }

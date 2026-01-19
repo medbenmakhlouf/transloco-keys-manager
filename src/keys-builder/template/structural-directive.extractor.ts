@@ -31,6 +31,7 @@ import {
   resolveKeysFromLiteralMap,
 } from './utils';
 import { isConditionalExpression, isLiteralExpression, isLiteralMap } from '@jsverse/angular-utils';
+import { isString } from '../../utils/validators.utils';
 
 interface MethodCallMetadata {
   keyNode?: AST;
@@ -173,7 +174,7 @@ function resolveMetadata(node: TmplAstTemplate): ContainerMetaData[] {
     let read = node.attributes.find(isPrefixAttr)?.value;
     if (!read) {
       const ast = (node.inputs.find(isPrefixAttr)?.value as ASTWithSource)?.ast;
-      if (isLiteralExpression(ast) && typeof ast.value === 'string') {
+      if (isLiteralExpression(ast) && isString(ast.value)) {
         read = ast.value;
       }
     }
@@ -184,9 +185,10 @@ function resolveMetadata(node: TmplAstTemplate): ContainerMetaData[] {
       (variable) => variable.value === '$implicit',
     )!;
     const read = node.templateAttrs.find(isPrefixAttr)?.value as ASTWithSource;
-    metadata = isLiteralExpression(read?.ast) && typeof read?.ast.value === 'string'
-      ? [{ name, read: read.ast.value }]
-      : [{ name }];
+    metadata =
+      isLiteralExpression(read?.ast) && isString(read?.ast.value)
+        ? [{ name, read: read.ast.value }]
+        : [{ name }];
   }
 
   return metadata.map((metadata) => {
