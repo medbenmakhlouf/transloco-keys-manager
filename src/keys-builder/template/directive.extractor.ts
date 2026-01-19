@@ -26,6 +26,7 @@ import {
 } from './utils';
 import { coerceArray } from '../../utils/collection.utils';
 import { isConditionalExpression, isLiteralExpression, isLiteralMap } from '@jsverse/angular-utils';
+import { isString } from '../../utils/validators.utils';
 
 export function directiveExtractor(config: TemplateExtractorConfig) {
   const ast = parseTemplate(config);
@@ -97,7 +98,7 @@ function resolveKey(ast: OrArray<AST | string>): string[] {
         return resolveKey(expression.expression);
       }
     })
-    .filter((key) => key !== undefined && key !== null && (typeof key === 'string' || Array.isArray(key)))
+    .filter((key) => key !== undefined && key !== null && (isString(key) || Array.isArray(key)))
     .flat();
 }
 
