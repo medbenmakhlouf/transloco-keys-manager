@@ -15,8 +15,8 @@ importers:
         specifier: 1.0.0-beta.6
         version: 1.0.0-beta.6(@angular/compiler@21.1.0)
       '@jsverse/transloco-utils':
-        specifier: 8.2.0
-        version: 8.2.0(typescript@5.9.3)
+        specifier: 8.2.1
+        version: 8.2.1(typescript@5.9.3)
       '@phenomnomnominal/tsquery':
         specifier: 6.1.4
         version: 6.1.4(typescript@5.9.3)
@@ -1108,8 +1108,8 @@ packages:
     peerDependencies:
       '@angular/compiler': '>=18.1.0'
 
-  '@jsverse/transloco-utils@8.2.0':
-    resolution: {integrity: sha512-rDactF2Qmu4JKBpecyYLzD3spPZ0U+6wgoQS2OIcVraq5riV8eE3sPYb5dgL2wxMgGtJRuT8PgMMAD7LUOcCNw==}
+  '@jsverse/transloco-utils@8.2.1':
+    resolution: {integrity: sha512-sAKJQuGgAYRYwndM8X1xVbwOrjENBxKxOwhXE7gFnS8fWUEwBGMswp3wbAOS5jZlLDhyaReesU16ToXLegBCjg==}
     engines: {node: '>=18'}
 
   '@lmdb/lmdb-darwin-arm64@3.4.4':
@@ -5051,7 +5051,7 @@ snapshots:
       '@angular/compiler': 21.1.0
       tslib: 2.8.1
 
-  '@jsverse/transloco-utils@8.2.0(typescript@5.9.3)':
+  '@jsverse/transloco-utils@8.2.1(typescript@5.9.3)':
     dependencies:
       cosmiconfig: 8.3.6(typescript@5.9.3)
       tslib: 2.8.1
