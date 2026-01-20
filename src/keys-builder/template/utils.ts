@@ -2,6 +2,7 @@ import {
   Call,
   Interpolation,
   LiteralMap,
+  LiteralMapPropertyKey,
   parseTemplate as ngParseTemplate,
   ParseTemplateOptions,
   PropertyRead,
@@ -21,7 +22,7 @@ import {
   TmplAstSwitchBlockCase,
   TmplAstSwitchBlockCaseGroup,
   TmplAstTemplate,
-  TmplAstTextAttribute
+  TmplAstTextAttribute,
 } from '@angular/compiler';
 
 import { readFile } from '../../utils/file.utils';
@@ -49,6 +50,9 @@ export function isTextAttribute(node: unknown): node is TmplAstTextAttribute {
   return node instanceof TmplAstTextAttribute;
 }
 
+export function isLiteralMapPropertyKey(node: LiteralMap): LiteralMapPropertyKey[] {
+  return node.keys.filter(k=> k.kind === 'property');
+}
 
 export function isInterpolation(ast: unknown): ast is Interpolation {
   return ast instanceof Interpolation;
@@ -182,7 +186,7 @@ export function resolveKeysFromLiteralMap(node: LiteralMap): string[] {
   let keys: string[] = [];
 
   for (let i = 0; i < node.values.length; i++) {
-    const { key } = node.keys.filter(k=> k.kind === 'property')[i];
+    const { key } = isLiteralMapPropertyKey(node)[i];
     const value = node.values[i];
 
     if (isLiteralMap(value)) {
