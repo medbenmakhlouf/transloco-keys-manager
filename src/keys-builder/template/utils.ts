@@ -20,7 +20,6 @@ import {
   TmplAstIfBlockBranch,
   TmplAstNode,
   TmplAstSwitchBlock,
-  TmplAstSwitchBlockCase,
   TmplAstSwitchBlockCaseGroup,
   TmplAstTemplate,
   TmplAstTextAttribute,
@@ -111,7 +110,6 @@ export function isBlockWithChildren(
     node instanceof TmplAstDeferredBlockPlaceholder ||
     node instanceof TmplAstForLoopBlockEmpty ||
     node instanceof TmplAstIfBlockBranch ||
-    node instanceof TmplAstSwitchBlockCase ||
     node instanceof TmplAstSwitchBlockCaseGroup
   );
 }
